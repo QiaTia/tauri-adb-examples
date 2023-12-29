@@ -12,7 +12,7 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
     "lint:eslint": "eslint --cache --fix \"src/**/*.{ts,tsx}\"",
     "lint:stylelint": "stylelint --cache --fix \"src/**/*.{css,less}\"",
-    "lint:prettier": "prettier --write \"src/**/*.{ts,tsx,css,less}\"",
+    "lint:prettier": "prettier --write \"src/**/*.{ts,tsx,css,less}\""
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
