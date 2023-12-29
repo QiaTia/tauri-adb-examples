@@ -1,0 +1,63 @@
+@import url('reset');
+@import url('global');
+
+body,html,#root{
+	width: 100%;
+	height: 100%;
+}
+.sider-item {
+	width: 40px;
+	height: 40px;
+	border-radius: 8px;
+	font-size: 22px;
+	margin-bottom: 12px;
+	&.active {
+		background-color: var(--active-bg-color);
+		color: var(--primary-color);
+	}
+	&:hover {
+		background-color: var(--active-bg-color);
+	}
+}
+.chagee {
+  &-dialog {
+    .ant-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      // background-color: #eee;
+    }
+    .ant-modal-body {
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    &.no-slide .ant-modal-confirm-content {
+      width: 100%;
+    }
+    .ant-modal-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      color: #333333;
+    }
+  }
+	&-layout-item {
+		width: 88px;
+		height: 88px;
+		border-radius: 8px;
+		cursor: pointer;
+		background-color: #2d2d2d;
+		color: #eee;
+		.anticon {
+			font-size: 44px;
+		}
+		&.active,
+		&:hover {
+			background-color: var(--active-bg-color);
+			color: var(--primary-color);
+		}
+		&>span {
+			font-size: 12px;
+		}
+	}
+}
