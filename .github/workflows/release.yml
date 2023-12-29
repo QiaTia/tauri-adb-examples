@@ -53,7 +53,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
  
       # 安装 Rust
       - name: Install Rust stable
@@ -97,7 +97,7 @@ jobs:
  
       # 安装依赖执行构建，以及推送 github release
       - name: Install app dependencies and build it
-      # 这里的pubhome要修改为你package.json里面配置的编译命令
+      # 安卓依赖以及构建
         run: yarn && yarn run:build
       - uses: tauri-apps/tauri-action@v0.3
         env:
