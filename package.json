@@ -4,10 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
+    "dev": "tauri dev",
     "preview": "vite preview",
-    "tauri": "tauri dev",
     "run:build": "tauri build",
     "lint": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
     "lint:eslint": "eslint --cache --fix \"src/**/*.{ts,tsx}\"",
