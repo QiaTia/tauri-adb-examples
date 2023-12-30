@@ -49,7 +49,7 @@ export default () => {
       async onTap() {
         const file = await selectFile({ multiple: false }) as FileItem;
         // await adbCommandRun( + '" "', 'push');
-        await runOtherCommand(`push ${file.filePath} \/sdcard\/Download\/`)
+        await runOtherCommand(`push;${file.filePath};\/sdcard\/Download\/`)
         message.success('成功! 默认保存到 Download 目录');
       }
     }, {

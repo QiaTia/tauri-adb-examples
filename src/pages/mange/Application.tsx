@@ -15,7 +15,7 @@ const Application = () => {
     setAppList([]);
     const adb = adbCommand('pm list packages -3');
     adb.stdout.on('data', (line: string) => setAppList((list) => {
-      return [...list, { title: line.split('.').pop()?.toLocaleUpperCase() ?? '', description: line.replace('package:', ''), }];
+      return [...list, { title: line.split('.').pop()?.toLocaleUpperCase() ?? '', description: line.replace('package:', '').trim(), }];
     }));
     adb.stderr.on('data', (line: string) => errorIntercept({ stderr: line }))
     adb.execute();
@@ -76,10 +76,22 @@ const Application = () => {
   }
   /** 启动APP */
   async function handleOpen(item: typeof appList[number]) {
-    const result = await adbCommandRun(`dumpsys package ${item.description} | grep -i activity `);
+    const result = await adbCommandRun(`dumpsys package ${item.description}`);
+    const list = result.split('\n');
+    let start = -1, end = 0;
+    while (list[end] !== void 0) {
+      if (start > -1) {
+        if(/\S/.test(list[end][0])) break;
+      }
+      else if (list[end].toLocaleLowerCase().includes('activity')) start = end;
+      end++;
+    }
+    // return;
+    // list.findIndex(() => { });
     /** 去重, 格式化, 整理数据 */
-    const activityList = Array.from(new Set(result.split('\n')
-      .filter((str) => str.includes(item.description))
+    const reg = new RegExp(item.description + '/(\\w)');
+    const activityList = Array.from(new Set(list.slice(start, end)
+      .filter((str) =>reg.test(str))
       .map((str) => {
         const tempList = str.split(' ');
         return tempList.find((tempStr) => tempStr.includes(item.description))?.trim() ?? '';
@@ -114,9 +126,9 @@ const Application = () => {
     });
   }
   useEffect(() => {
-    adbCommandRun(`getprop ro.product.model`).then((result) => {
-      console.log(result);
-    });
+    // adbCommandRun(`getprop ro.product.model`).then((result) => {
+    //   console.log(result);
+    // });
     getAdbAppList();
   }, []);
   return (

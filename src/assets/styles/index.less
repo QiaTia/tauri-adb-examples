@@ -19,8 +19,8 @@ body,html,#root{
 		background-color: var(--active-bg-color);
 	}
 }
-.chagee {
-  &-dialog {
+.chagee- {
+  &dialog {
     .ant-modal-close {
       width: 32px;
       height: 32px;
@@ -41,7 +41,7 @@ body,html,#root{
       color: #333333;
     }
   }
-	&-layout-item {
+	&layout-item {
 		width: 88px;
 		height: 88px;
 		border-radius: 8px;
@@ -58,6 +58,44 @@ body,html,#root{
 		}
 		&>span {
 			font-size: 12px;
+		}
+	}
+	&bar {
+		&-app {
+			display: flex;
+			align-items: center;
+			padding: 0 8px;
+			&:hover span {
+				opacity: 1;
+			}
+		}
+		&-btn {
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background-color: #4EB905;
+			font-size: 10px;
+			margin: 0 4px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			&>span {
+				opacity: 0;
+				transition: 0.1s opacity;
+			}
+			&.red {
+				background-color: #FF4040;
+			}
+			&.origin {
+				background-color: #FFBA00;
+			}
+			&:not(.disabled){
+				cursor: pointer;
+			}
+			&.disabled {
+				background-color: #D0D0D0;
+			}
 		}
 	}
 }

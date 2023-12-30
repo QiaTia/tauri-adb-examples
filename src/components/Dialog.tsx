@@ -38,8 +38,23 @@ export function showDialog(
   modal.info(prams);
 }
 
+export function confirm(props: ModalFuncProps) {
+  return new Promise<void>((resolve, reject) => {
+    Modal.confirm({
+      ...props,
+      onOk() {
+        resolve();
+      },
+      onCancel() {
+        reject()
+      }
+    });
+  });
+}
+
 Dialog.showDialog = showDialog;
 Dialog.useModal = Modal.useModal;
+Dialog.confirm = confirm;
 export const useModal = Modal.useModal;
 
 export default Dialog;

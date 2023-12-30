@@ -1,9 +1,10 @@
-import { Divider, Flex, Space, message, Input } from 'antd';
-import { adbCommandRun } from '@/utils/SendADB'
+import { Divider, Flex, Space, message, Input, Modal, Tooltip } from 'antd';
+import { adbCommandRun, runOtherCommand } from '@/utils/SendADB'
 import { useState } from 'react';
-import { FieldNumberOutlined, InfoCircleOutlined, PoweroffOutlined, RedoOutlined, SafetyCertificateOutlined, UserOutlined, WifiOutlined } from '@ant-design/icons';
-import { Modal, Tooltip } from 'antd';
+import { FieldNumberOutlined, InfoCircleOutlined, PoweroffOutlined, RedoOutlined, SafetyCertificateOutlined, WifiOutlined, TeamOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs';
 import { LayoutItem, LayoutItemProps } from '@/components/LayoutList';
+import Dialog from '@/components/Dialog';
 const { TextArea } = Input;
 
 export default () => {
@@ -13,14 +14,16 @@ export default () => {
       {
         name: '关机',
         icon: PoweroffOutlined,
-        async onTap() {
+        async onTap({ name }) {
+          await Dialog.confirm({ content: `请确认执行 ${name}？` });
           await adbCommandRun('reboot -p')
           message.success('命令下发成功!');
         }
       }, {
         name: '重启',
         icon: RedoOutlined,
-        async onTap() {
+        async onTap({ name }) {
+          await Dialog.confirm({ content: `请确认执行 ${name}？` });
           await adbCommandRun('reboot')
           message.success('成功! 默认保存到 Download 目录');
         }
@@ -71,7 +74,17 @@ export default () => {
           await adbCommandRun('pm clear com.ssnwt.newskyui');
           message.success('命令下发成功!');
         }
-      },
+      }, {
+        name: '同步时间',
+        icon: TeamOutlined,
+        async onTap() {
+          await runOtherCommand('root');
+          await runOtherCommand('remount');
+          const result = await adbCommandRun(`date "${dayjs().format('YYYY-MM-DD HH:mm:ss')}"`);
+          console.log(result);
+          message.success('命令下发成功!');
+        }
+      }, 
       {
         name: "自定义命令",
         icon: SafetyCertificateOutlined,

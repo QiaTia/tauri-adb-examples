@@ -31,7 +31,7 @@ function App() {
       }
     }}>
       <Layout style={LayoutStyle}>
-        <AppHeader />
+        <AppHeader title='Adb Tools' />
         <Layout>
           <Router>
             <AppSider />

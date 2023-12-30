@@ -32,8 +32,10 @@ export function errorIntercept ({ stderr }: Pick<ChildProcess, 'stderr'>) {
   if (stderr !== '') {
     const regex = /no devices|device '\(null\)' not found|device not found/;
     if(regex.test(stderr)) message.error('未连接设备'); 
-    else if(stderr.toLocaleLowerCase().includes('Performing Streamed Install'.toLocaleLowerCase()))
+    else if(stderr.toLocaleLowerCase().includes('performing streamed install'.toLocaleLowerCase()))
       message.error('安装失败, 可能未打开usb安装或者拒绝!');
+    else if (stderr.toLocaleLowerCase().includes('operation not permitted'))
+      message.error('无权进行此操作!');
     return Promise.reject(stderr);
   }
 }

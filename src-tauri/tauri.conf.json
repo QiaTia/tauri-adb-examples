@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "Quest`tools",
+    "productName": "Adb Tools",
     "version": "1.0.0"
   },
   "tauri": {
@@ -80,17 +80,18 @@
       {
         "label": "main",
         "fullscreen": false,
-        "height": 700,
+        "height": 600,
         "resizable": false,
         "title": "",
         "skipTaskbar": false,
         "transparent": true,
         "hiddenTitle": true,
+        "decorations": false,
         "x": 0,
         "titleBarStyle": "Overlay",
         "y": 0,
         "center": true,
-        "width": 1000
+        "width": 800
       }
     ],
     "macOSPrivateApi": true

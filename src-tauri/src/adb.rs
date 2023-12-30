@@ -5,7 +5,7 @@ pub async fn execute_command(command: String) -> Result<String, String> {
     println!("{}", command);
     let parts: Vec<String> = command
         .trim()
-        .split_whitespace()
+        .split(';')
         .map(|s| s.to_string())
         .collect();
     let mut cmd = Command::new("adb");

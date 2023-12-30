@@ -1,12 +1,12 @@
 {
   "name": "tauri-study-examples",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.5",
   "type": "module",
   "scripts": {
     "build": "vite build",
     "dev": "vite dev",
-    "build:dev": "tauri dev",
+    "dev:tauri": "tauri dev",
     "preview": "vite preview",
     "build:tauri": "tauri build",
     "lint": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
@@ -31,7 +31,6 @@
     "axios-fetch-mini": "^1.2.1",
     "cheerio": "1.0.0-rc.12",
     "dayjs": "^1.11.7",
-    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1"
