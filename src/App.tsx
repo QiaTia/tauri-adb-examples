@@ -26,7 +26,6 @@ function App() {
     <ConfigProvider locale={zhCN} theme={{
       algorithm: theme.darkAlgorithm,
       token: {
-        colorBgLayout: 'var(--bar-bg-color)',
         colorPrimary: '#53e3a6'
       }
     }}>

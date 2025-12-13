@@ -1,4 +1,4 @@
-import { Divider, Flex, Space, message, Input, Modal, Tooltip } from 'antd';
+import { Divider, Flex, Space, message, Input, Modal, notification, Tooltip } from 'antd';
 import { adbCommandRun, runOtherCommand } from '@/utils/SendADB'
 import { useState } from 'react';
 import { FieldNumberOutlined, InfoCircleOutlined, PoweroffOutlined, RedoOutlined, SafetyCertificateOutlined, WifiOutlined, TeamOutlined } from '@ant-design/icons';
@@ -31,16 +31,24 @@ export default () => {
         name: '获取SN号',
         icon: FieldNumberOutlined,
         async onTap() {
-          await adbCommandRun('getprop ro.serialno');
+          const result = await adbCommandRun('getprop ro.serialno');
           message.success('命令下发成功!');
+          notification.success({
+            message: 'SN号',
+            description: result,
+          });
         }
       },
       {
         name: "获取电量",
         icon: FieldNumberOutlined,
         async onTap() {
-          await adbCommandRun('dumpsys battery');
+          const result = await adbCommandRun('dumpsys battery');
           message.success('命令下发成功!');
+          notification.success({
+            message: '电量',
+            description: result,
+          });
         }
       },
       {

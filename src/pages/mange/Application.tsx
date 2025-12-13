@@ -14,11 +14,15 @@ const Application = () => {
   const getAdbAppList = async () => {
     setAppList([]);
     const adb = adbCommand('pm list packages -3');
-    adb.stdout.on('data', (line: string) => setAppList((list) => {
-      return [...list, { title: line.split('.').pop()?.toLocaleUpperCase() ?? '', description: line.replace('package:', '').trim(), }];
-    }));
-    adb.stderr.on('data', (line: string) => errorIntercept({ stderr: line }))
-    adb.execute();
+    // adb.stdout.on('data', (line: string) => setAppList((list) => {
+    //   return [...list, { title: line.split('.').pop()?.toLocaleUpperCase() ?? '', description: line.replace('package:', '').trim(), }];
+    // }));
+    // adb.stderr.on('data', (line: string) => errorIntercept({ stderr: line }))
+    const output = await adb.execute();
+    if (output.stdout == '') return;
+    const list = output.stdout.split('\n')
+      .map((line) => ({ title: line.split('.').pop()?.toLocaleUpperCase() ?? '', description: line.replace('package:', '').trim(), }))
+    setAppList(list);
   };
   /** 获取一些信息 */
   async function handleVersion(i: number) {

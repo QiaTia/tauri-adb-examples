@@ -1,7 +1,7 @@
 import { Divider, Flex, message, Space } from 'antd';
 import { adbCommandRun, runOtherCommand } from '@/utils/SendADB';
 import { useState } from 'react';
-import { open, OpenDialogOptions } from '@tauri-apps/api/dialog';
+import { open, OpenDialogOptions } from '@tauri-apps/plugin-dialog';
 import { LayoutItem, LayoutItemProps } from '@/components/LayoutList';
 import { AndroidOutlined, FileSyncOutlined, UsbOutlined } from '@ant-design/icons';
 

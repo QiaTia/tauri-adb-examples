@@ -1,6 +1,8 @@
 import { CloseOutlined, MinusOutlined } from '@ant-design/icons';
 import { Layout, Typography } from 'antd';
-import { appWindow } from '@tauri-apps/api/window';
+import { getCurrentWindow } from '@tauri-apps/api/window';
+
+const appWindow = getCurrentWindow();
 
 const headerStyle: React.CSSProperties = {
   height: 54,
