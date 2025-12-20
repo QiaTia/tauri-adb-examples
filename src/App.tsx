@@ -9,6 +9,7 @@ const LayoutStyle: React.CSSProperties = {
   width: '100%',
   paddingBottom: 8,
   paddingRight: 8,
+  borderRadius: '10px',
 }
 
 const contentStyle: React.CSSProperties = {
