@@ -29,6 +29,24 @@
       ]
     },
     {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "ffmpeg",
+          "cmd": "ffmpeg",
+          "capability": true,
+          "args": [
+            {
+              "validator": "\\S+"
+            },
+            {
+              "validator": ".*"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "identifier": "http:default",
       "allow": [
         {
